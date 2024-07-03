@@ -1,0 +1,16 @@
+# Node.js
+node_modules/
+dist/
+
+
+# Environment variables
+.env
+
+# Typescript
+*.tsbuildinfo
+
+# ESLint
+.eslintcache
+
+# Prettier
+*.prettiercache
