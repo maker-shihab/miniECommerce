@@ -6,8 +6,8 @@ const createProductFormDb = async (productData: TProduct) => {
   return restlt;
 };
 
-const getAllProductsFormDb = async () => {
-  const restlt = await ProductModel.find();
+const getAllProductsFormDb = async (query?: any) => {
+  const restlt = await ProductModel.find(query);
   return restlt;
 };
 

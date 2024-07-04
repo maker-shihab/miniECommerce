@@ -22,11 +22,36 @@ const createProduct = async (req: Request, res: Response) => {
 };
 
 const getAllProducts = async (req: Request, res: Response) => {
+  const searchTerm = req.query.searchTerm as string;
+
   try {
-    const result = await ProductServices.getAllProductsFormDb();
-    res.status(httpStatus.OK).json({
+    let addQuery: any = {};
+
+    if (searchTerm) {
+      addQuery.$or = [
+        { name: { $regex: searchTerm, $options: 'i' } },
+        { description: { $regex: searchTerm, $options: 'i' } },
+      ];
+    }
+
+    const result = searchTerm
+      ? await ProductServices.getAllProductsFormDb(addQuery)
+      : await ProductServices.getAllProductsFormDb();
+
+    if (result.length === 0) {
+      return res.status(httpStatus.NOT_FOUND).json({
+        success: false,
+        message: searchTerm
+          ? `No products found matching the search term '${searchTerm}'`
+          : 'No products found',
+      });
+    }
+
+    return res.status(httpStatus.OK).json({
       success: true,
-      message: 'Products fetched successfully!',
+      message: searchTerm
+        ? `Products matching search term '${searchTerm}' fetched successfully!`
+        : 'Products fetched successfully!',
       data: result,
     });
   } catch (error: any) {
@@ -39,28 +64,39 @@ const getAllProducts = async (req: Request, res: Response) => {
 
 const getSingleProduct = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    const result = await ProductServices.getSingleProductFormDb(id);
+    const productId = req.params.productId;
 
-    res.status(httpStatus.OK).json({
-      success: true,
-      message: 'Product fetched successfully!',
-      data: result,
-    });
-  } catch (error: any) {
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-      success: true,
-      message: error.message || 'Something went wrong',
+    const result = await ProductServices.getSingleProductFormDb(productId);
+
+    if (!result) {
+      return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: 'Product not found!',
+      });
+    } else {
+      return res.status(httpStatus.OK).json({
+        success: true,
+        message: 'Product fetched successfully!',
+        data: result,
+      });
+    }
+  } catch (error) {
+    return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: 'Product not found!',
     });
   }
 };
 
 const updateProduct = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const productId = req.params.productId;
     const { productData } = req.body;
 
-    const result = await ProductServices.updateProductFormDb(id, productData);
+    const result = await ProductServices.updateProductFormDb(
+      productId,
+      productData,
+    );
 
     res.status(httpStatus.OK).json({
       success: true,
@@ -77,8 +113,8 @@ const updateProduct = async (req: Request, res: Response) => {
 
 const deleteProduct = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    await ProductServices.deleteProductFormDb(id);
+    const productId = req.params.productId;
+    await ProductServices.deleteProductFormDb(productId);
 
     res.status(httpStatus.OK).json({
       success: true,

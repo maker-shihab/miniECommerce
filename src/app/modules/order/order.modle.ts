@@ -4,8 +4,7 @@ import { TOrder } from './order.interface';
 const OrderSchema = new Schema<TOrder>({
   email: { type: String, required: true },
   productId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Product',
+    type: String,
     required: true,
   },
   price: {

@@ -52,10 +52,6 @@ const ProductSchema = new Schema<TProduct>({
     type: InventorySchema,
     required: true,
   },
-  isDeleted: {
-    type: Boolean,
-    default: false,
-  },
 });
 
 export const ProductModel = mongoose.model<TProduct>('Product', ProductSchema);
