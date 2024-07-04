@@ -7,14 +7,14 @@ const router = Router();
 const moduleRouters = [
   {
     path: '/orders',
-    router: OrderRoute,
+    route: OrderRoute,
   },
   {
     path: '/products',
-    router: ProductRoute,
+    route: ProductRoute,
   },
 ];
 
-moduleRouters.forEach(route => router.use(route.path, route.router));
+moduleRouters.forEach(route => router.use(route.path, route.route));
 
 export default router;

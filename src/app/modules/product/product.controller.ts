@@ -114,6 +114,7 @@ const updateProduct = async (req: Request, res: Response) => {
 const deleteProduct = async (req: Request, res: Response) => {
   try {
     const productId = req.params.productId;
+
     await ProductServices.deleteProductFormDb(productId);
 
     res.status(httpStatus.OK).json({
@@ -121,10 +122,10 @@ const deleteProduct = async (req: Request, res: Response) => {
       message: 'Product deleted successfully!',
       data: null,
     });
-  } catch (error: any) {
+  } catch (error) {
     res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
       success: true,
-      message: error.message || 'Something went wrong',
+      message: 'Product not found!',
     });
   }
 };
