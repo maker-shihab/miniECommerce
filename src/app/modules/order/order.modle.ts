@@ -8,8 +8,14 @@ const OrderSchema = new Schema<TOrder>({
     ref: 'Product',
     required: true,
   },
-  price: { type: Number, required: true },
-  quantity: { type: Number, required: true },
+  price: {
+    type: Number,
+    required: true,
+  },
+  quantity: {
+    type: Number,
+    required: true,
+  },
 });
 
-export const Order = mongoose.model<TOrder>('Order', OrderSchema);
+export const OrderModel = mongoose.model<TOrder>('Order', OrderSchema);

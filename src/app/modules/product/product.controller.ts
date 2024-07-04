@@ -9,7 +9,7 @@ const createProduct = async (req: Request, res: Response) => {
 
     res.status(httpStatus.OK).json({
       success: true,
-      message: 'Product created successfully',
+      message: 'Product created successfully!',
       data: result,
     });
   } catch (error: any) {
@@ -26,7 +26,7 @@ const getAllProducts = async (req: Request, res: Response) => {
     const result = await ProductServices.getAllProductsFormDb();
     res.status(httpStatus.OK).json({
       success: true,
-      message: 'All products!',
+      message: 'Products fetched successfully!',
       data: result,
     });
   } catch (error: any) {
@@ -44,7 +44,7 @@ const getSingleProduct = async (req: Request, res: Response) => {
 
     res.status(httpStatus.OK).json({
       success: true,
-      message: 'Here single Product!',
+      message: 'Product fetched successfully!',
       data: result,
     });
   } catch (error: any) {
@@ -78,12 +78,12 @@ const updateProduct = async (req: Request, res: Response) => {
 const deleteProduct = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const result = await ProductServices.deleteProductFormDb(id);
+    await ProductServices.deleteProductFormDb(id);
 
     res.status(httpStatus.OK).json({
       success: true,
-      message: 'Here single Product!',
-      data: result,
+      message: 'Product deleted successfully!',
+      data: null,
     });
   } catch (error: any) {
     res.status(httpStatus.INTERNAL_SERVER_ERROR).json({

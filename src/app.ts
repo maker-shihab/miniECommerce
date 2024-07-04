@@ -25,8 +25,7 @@ app.use(errorHandler);
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(httpStatus.NOT_FOUND).json({
     success: false,
-    message: 'API Not Found !!',
-    error: '',
+    message: 'Route not found',
   });
 
   next();

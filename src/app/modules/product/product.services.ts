@@ -26,7 +26,7 @@ const updateProductFormDb = async (id: string, productData: TProduct) => {
 };
 
 const deleteProductFormDb = async (id: string) => {
-  const restlt = await ProductModel.updateOne({ id }, { isDeleted: true });
+  const restlt = await ProductModel.deleteOne({ id: id });
   return restlt;
 };
 
