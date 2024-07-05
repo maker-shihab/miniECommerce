@@ -1,11 +1,15 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import { ProductServices } from './product.services';
+import productValidationSchema from './product.validations';
 
 const createProduct = async (req: Request, res: Response) => {
   try {
     const productData = req.body;
-    const result = await ProductServices.createProductFormDb(productData);
+
+    const productValidation = productValidationSchema.parse(productData);
+
+    const result = await ProductServices.createProductFormDb(productValidation);
 
     res.status(httpStatus.OK).json({
       success: true,
@@ -25,7 +29,7 @@ const getAllProducts = async (req: Request, res: Response) => {
   const searchTerm = req.query.searchTerm as string;
 
   try {
-    let addQuery: any = {};
+    const addQuery: any = {};
 
     if (searchTerm) {
       addQuery.$or = [
@@ -91,7 +95,7 @@ const getSingleProduct = async (req: Request, res: Response) => {
 const updateProduct = async (req: Request, res: Response) => {
   try {
     const productId = req.params.productId;
-    const { productData } = req.body;
+    const productData = req.body;
 
     const result = await ProductServices.updateProductFormDb(
       productId,
