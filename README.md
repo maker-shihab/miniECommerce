@@ -36,7 +36,7 @@ A basic backend for an e-commerce project, built with TypeScript, Node.js, Expre
 
 4. **Base URL:**
 
-   http://localhost:3000/api
+   https://mini-ec-ommerce.vercel.app/api
 
 ## Products Endpoints
 
