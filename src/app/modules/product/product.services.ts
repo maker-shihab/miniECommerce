@@ -18,8 +18,9 @@ const getSingleProductFormDb = async (id: string) => {
 
 const updateProductFormDb = async (id: string, productData: TProduct) => {
   const restlt = await ProductModel.findByIdAndUpdate(
-    { id: id },
+    { _id: id },
     { $set: productData },
+    { new: true },
   );
 
   return restlt;

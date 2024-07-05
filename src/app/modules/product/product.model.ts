@@ -16,14 +16,16 @@ const InventorySchema = new Schema<TInventory>({
   quantity: {
     type: Number,
     required: true,
+    default: 0,
   },
   inStock: {
     type: Boolean,
     required: true,
+    default: true,
   },
 });
 
-const ProductSchema = new Schema<TProduct>({
+export const ProductSchema = new Schema<TProduct>({
   name: {
     type: String,
     required: true,
