@@ -36,50 +36,50 @@ A basic backend for an e-commerce project, built with TypeScript, Node.js, Expre
 
 4. **Base URL:**
 
-   https://mini-ec-ommerce.vercel.app/api
+   https://mini-ec-ommerce.vercel.app
 
 ## Products Endpoints
 
 ### Create a New Product
 
-- **Endpoint:** [POST /products](https://mini-ec-ommerce.vercel.app/api/products)
+- **Endpoint:** [POST /api/products](https://mini-ec-ommerce.vercel.app/api/products)
 - **Description:** Create a new product.
 
 ### Get All Products
 
-- **Endpoint:** [GET /products](https://mini-ec-ommerce.vercel.app/api/products)
+- **Endpoint:** [GET /api/products](https://mini-ec-ommerce.vercel.app/api/products)
 - **Description:** Retrieve all products.
 
 ### Get a Single Product
 
-- **Endpoint:** [GET /products/:productId](https://mini-ec-ommerce.vercel.app/api/products/:productId)
+- **Endpoint:** [GET /api/products/:productId](https://mini-ec-ommerce.vercel.app/api/products/:productId)
 - **Description:** Retrieve a single product by its ID.
 
 ### Update a Product
 
-- **Endpoint:** [PUT /products/:productId](https://mini-ec-ommerce.vercel.app/api/products/:productId)
+- **Endpoint:** [PUT /api/products/:productId](https://mini-ec-ommerce.vercel.app/api/products/:productId)
 - **Description:** Update an existing product by its ID.
 
 ### Delete a Product
 
-- **Endpoint:** [DELETE /products/:productId](https://mini-ec-ommerce.vercel.app/api/products/:productId)
+- **Endpoint:** [DELETE /api/products/:productId](https://mini-ec-ommerce.vercel.app/api/products/:productId)
 - **Description:** Delete a product by its ID.
 
 ## Orders Endpoints
 
 ### Create a New Order
 
-- **Endpoint:** [POST /orders](https://mini-ec-ommerce.vercel.app/api/orders)
+- **Endpoint:** [POST /api/orders](https://mini-ec-ommerce.vercel.app/api/orders)
 - **Description:** Create a new order.
 
 ### Get All Orders
 
-- **Endpoint:** [GET /orders](https://mini-ec-ommerce.vercel.app/api/orders)
+- **Endpoint:** [GET /api/orders](https://mini-ec-ommerce.vercel.app/api/orders)
 - **Description:** Retrieve all orders.
 
 ### Retrieve Orders by User Email
 
-- **Endpoint:** [GET /orders?email=alu1a@gmail.com](https://mini-ec-ommerce.vercel.app/api/orders?email=alu1a@gmail.com)
+- **Endpoint:** [GET /api/orders?email=alu1a@gmail.com](https://mini-ec-ommerce.vercel.app/api/orders?email=alu1a@gmail.com)
 - **Description:** Retrieve orders by the user's email.
 
 ## Conclusion
